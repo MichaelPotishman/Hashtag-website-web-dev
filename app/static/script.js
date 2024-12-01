@@ -71,17 +71,20 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 document.getElementById('theme-toggle').addEventListener('click', function () {
-    // Check if the body has the dark theme applied
+    // Check if the body has the dark theme applie
+    const nav = document.querySelector('.navbar');
     
     const themeOutput = document.getElementById("theme-toggle");
     if (document.body.classList.contains('dark-theme')) {
         // Switch to light mode
         document.body.classList.remove('dark-theme');
+        nav.classList.remove('dark-theme');
         themeOutput.innerText = 'Switch to Dark mode';
         
     } else {
         // Switch to dark mode
         document.body.classList.add('dark-theme');
+        nav.classList.add('dark-theme');
         themeOutput.innerText = 'Switch to Light mode';
     }
 
@@ -188,16 +191,6 @@ $(document).ready(function() {
     });  
 
 
-    // $(document).on('click', '#post-open-modal-btn', function() {
-    //     $('#post-confirmation-modal').css('display', 'block');
-    // });
-
-    // $(document).on('click', '#post-close-modal-btn', function() {
-
-    //     $('#post-confirmation-modal').css('display', 'none');
-    // });
-
-
 
     $(document).on("click", "a.vote", function() {
         var clicked_obj = $(this);  
@@ -246,8 +239,6 @@ $(document).ready(function() {
                 $('#content-area').html(response);
                 $('#posts-btn').addClass('active');
                 $('#likes-btn').removeClass('active');
-                attachDeleteButtonListeners();
-                attachCloseButtonListeners();
             },
             error: function(error) {
                 console.log(error);
@@ -265,8 +256,6 @@ $(document).ready(function() {
                 $('#content-area').html(response);
                 $('#likes-btn').addClass('active');
                 $('#posts-btn').removeClass('active');
-                attachDeleteButtonListeners();
-                attachCloseButtonListeners();
             },
             error: function(error) {
                 console.log(error);
@@ -302,8 +291,6 @@ $(document).ready(function() {
             type: 'GET',
             success: function(response) {
                 $("#result").html(response);
-                attachDeleteButtonListeners();
-                attachCloseButtonListeners();
             },
             error: function(error) {
                 console.log("Search error:", error);
